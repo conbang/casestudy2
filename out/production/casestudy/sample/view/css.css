@@ -1,0 +1,36 @@
+* {
+    -fx-primary: #017cc1;
+    -fx-secondary: #FFFF8D;
+    -fx-primarytex: #B2B2B2;
+}
+
+.root {
+    -fx-background-color: -fx-primary;
+}
+
+.button {
+    -fx-text-fill: -fx-primarytex;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-primarytex;
+    -fx-border-radius: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #585750;
+    -fx-border-color: #585750;
+    -fx-border-radius: 10px;
+
+}
+.password-field{
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-primarytex;
+    -fx-border: -fx-primarytex;
+}
+.text-field {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-primarytex;
+    -fx-border: -fx-primarytex;
+}
+.glyph-icon {
+    -fx-fill: -fx-primarytex;
+}
