@@ -1,4 +1,5 @@
 package sample.model;
+
 import sample.view.ErrorAlert;
 import sample.view.register.Validate;
 
@@ -9,7 +10,6 @@ public class Register implements Dbconnectable {
     private String password;
     private String email;
     private String phone;
-    Validate validate;
     ErrorAlert errorAlert;
 
     public Register(String username, String password, String email, String phone) {
@@ -27,17 +27,7 @@ public class Register implements Dbconnectable {
             connection = DriverManager.getConnection(CONNECTION, ADMIN, PASSWORD);
             statement = connection.createStatement();
             System.out.println("connect success");
-            validate = new Validate();
-            if(!validate.isValidName(username)){
-                errorAlert = new ErrorAlert("invalid account!");
-                return false;
-            }else if(!validate.isValidEmail(password)){
-                errorAlert = new ErrorAlert("invalid email!");
-                return false;
-            }else if(!validate.isValidPhone(phone)){
-                errorAlert = new ErrorAlert("invalid phone!");
-                return false;
-            }
+
             String query = FINDUSER + "account='" + this.username + "'";
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
@@ -47,12 +37,12 @@ public class Register implements Dbconnectable {
                 query = INSERT + "('" + this.username + "','"
                         + this.password + "','"
                         + this.email + "','"
-                        + this.phone
-                        + "')";
-                try{
+                        + this.phone + "','offline')";
+                try {
+                    System.out.println(query);
                     statement.execute(query);
                     return true;
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.getMessage();
                     return false;
                 }

@@ -1,6 +1,6 @@
 package sample.model;
 import sample.view.ErrorAlert;
-import sample.view.User;
+
 import java.sql.*;
 
 public class Login implements Dbconnectable {
@@ -23,15 +23,14 @@ public class Login implements Dbconnectable {
             String query = FINDUSER + " account='" + username + "' and password='" + password + "'";
             ResultSet result = statement.executeQuery(query);
             if (result.next()) {
-                User user = new User(result.getString("account"),
-                        result.getString("password"), result.getInt("id"),
-                        result.getString("email"));
-
+                return true;
             } else {
                 errorAlert = new ErrorAlert("user or password is wrong!");
+                return false;
             }
         } catch (Exception e) {
             errorAlert = new ErrorAlert("Check network and try again!");
+            return false;
         } finally {
             try {
                 if (connection != null && statement != null) {
